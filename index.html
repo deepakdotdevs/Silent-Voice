@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilentVoice - Campus Safety Platform</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <span>SilentVoice</span>
+            </div>
+            <div class="nav-links">
+                <button class="nav-link" onclick="navigateTo('landing')">Home</button>
+                <button class="nav-link" onclick="navigateTo('student')">Student Portal</button>
+                <button class="nav-link admin-login-btn" onclick="navigateTo('admin-login')">Admin Login</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Landing Page -->
+    <div id="landing" class="page">
+        <div class="hero">
+            <div class="hero-content">
+                <svg class="hero-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h1>SilentVoice</h1>
+                <p class="hero-subtitle">Your Voice Matters. Your Safety is Our Priority.</p>
+                <p class="hero-description">An intelligent, anonymous platform for a safer campus.</p>
+                <button class="btn btn-primary btn-large" onclick="navigateTo('student')">Enter Reporting Portal</button>
+            </div>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🔒</div>
+                <h3>100% Anonymous</h3>
+                <p>Submit reports without revealing your identity.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI-Powered Triage</h3>
+                <p>Urgent issues are flagged instantly for fast action.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🗺️</div>
+                <h3>Community Heatmap</h3>
+                <p>View a live map of campus safety reports.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🚨</div>
+                <h3>Emergency Alerts</h3>
+                <p>Instant alerts for high-priority incidents.</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>SilentVoice © 2025. An Intelligent Campus Safety Platform.</p>
+        </footer>
+    </div>
+
+    <!-- Student Portal -->
+    <div id="student" class="page">
+        <div class="portal-container">
+            <h1>Student Reporting Portal</h1>
+            <p class="portal-subtitle">A safe, anonymous, and effective way to voice your concerns.</p>
+
+            <div class="tabs">
+                <button class="tab-btn active" onclick="switchTab('submit')">Submit</button>
+                <button class="tab-btn" onclick="switchTab('track')">Track</button>
+                <button class="tab-btn" onclick="switchTab('map')">Safety Map</button>
+            </div>
+
+            <!-- Submit Tab -->
+            <div id="submit-tab" class="tab-content active">
+                <div class="form-container">
+                    <div class="form-group">
+                        <label>Category</label>
+                        <select id="category" class="form-input">
+                            <option>Harassment</option>
+                            <option>Safety Hazard</option>
+                            <option>Theft</option>
+                            <option>Vandalism</option>
+                            <option>Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Detailed Description</label>
+                        <p class="form-hint">Please provide as much detail as possible.</p>
+                        <textarea id="description" class="form-input" rows="6" placeholder="Describe the incident..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Add Evidence (Optional)</label>
+                        <div class="evidence-buttons">
+                            <button class="btn btn-secondary" onclick="addLocation()">
+                                📍 Add Current Location
+                            </button>
+                            <button class="btn btn-secondary" onclick="uploadPhoto()">
+                                📷 Upload Photo
+                            </button>
+                        </div>
+                        <input type="file" id="photo-input" style="display: none;" accept="image/*">
+                        <div id="location-display" class="location-display"></div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large" onclick="submitReport()">Submit Anonymously</button>
+                </div>
+            </div>
+
+            <!-- Track Tab -->
+            <div id="track-tab" class="tab-content">
+                <div class="track-container">
+                    <div class="track-input-group">
+                        <input type="text" id="report-id" class="form-input" placeholder="Enter your Report ID">
+                        <button class="btn btn-primary" onclick="trackReport()">Track</button>
+                    </div>
+                    <div id="track-result" class="track-result"></div>
+                </div>
+            </div>
+
+            <!-- Map Tab -->
+            <div id="map-tab" class="tab-content">
+                <div class="map-container">
+                    <h3>Campus Safety Hotspots</h3>
+                    <p>This map shows generalized locations of recent non-sensitive reports like maintenance or safety hazards to promote community awareness.</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.7597857849!2d77.20218!3d28.54!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce2cc00000001%3A0x1234567890!2sDelhi%20University!5e0!3m2!1sen!2sin!4v1234567890" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>SilentVoice © 2025. An Intelligent Campus Safety Platform.</p>
+        </footer>
+    </div>
+
+    <!-- Admin Login Page -->
+    <div id="admin-login" class="page">
+        <div class="login-container">
+            <div class="login-box">
+                <svg class="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h2>Admin Login</h2>
+
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="admin-email" class="form-input" placeholder="Enter your email">
+                </div>
+
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="admin-password" class="form-input" placeholder="Enter your password">
+                </div>
+
+                <button class="btn btn-primary btn-large" onclick="adminLogin()">Sign In</button>
+                <p class="login-hint">Demo: admin@campus.edu / password123</p>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>SilentVoice © 2025. An Intelligent Campus Safety Platform.</p>
+        </footer>
+    </div>
+
+    <!-- Admin Dashboard -->
+    <div id="admin-dashboard" class="page">
+        <div class="dashboard-container">
+            <div class="dashboard-header">
+                <h1>Admin Dashboard</h1>
+                <button class="btn btn-secondary" onclick="adminLogout()">Logout</button>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" id="total-reports">0</div>
+                    <div class="stat-label">Total Reports</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="under-review">0</div>
+                    <div class="stat-label">Under Review</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="resolved">0</div>
+                    <div class="stat-label">Resolved</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="high-priority">0</div>
+                    <div class="stat-label">High Priority</div>
+                </div>
+            </div>
+
+            <div class="reports-section">
+                <h2>Recent Reports</h2>
+                <div class="reports-table-wrapper">
+                    <table class="reports-table">
+                        <thead>
+                            <tr>
+                                <th>Report ID</th>
+                                <th>Category</th>
+                                <th>Status</th>
+                                <th>Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="reports-tbody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>SilentVoice © 2025. An Intelligent Campus Safety Platform.</p>
+        </footer>
+    </div>
+
+    <!-- Report Detail Modal -->
+    <div id="report-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Report Details</h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modal-body" class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal()">Close</button>
+                <button class="btn btn-primary" onclick="resolveReport()">Mark as Resolved</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
