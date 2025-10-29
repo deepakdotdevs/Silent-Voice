@@ -25,7 +25,7 @@ It allows users to submit requests with location tracking (Longitude & Latitude)
 
 | User Home | Location Upload | Admin Dashboard |
 |:---------:|:----------------:|:----------------:|
-| ![User](https://via.placeholder.com/300x200.png?text=User+Screen) | ![Location](https://via.placeholder.com/300x200.png?text=Location+Upload) | ![Admin](https://via.placeholder.com/300x200.png?text=Admin+Panel) |
+| ![User](https://via.placeholder.com/300x200.png?text=User+Screen) | ![Location](university1.jpeg) | ![Admin](https://via.placeholder.com/300x200.png?text=Admin+Panel) |
 
 > 📌 Replace these placeholder images with your real screenshot URLs
 
