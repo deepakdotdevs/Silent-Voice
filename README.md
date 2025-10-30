@@ -25,7 +25,7 @@ It allows users to submit requests with location tracking (Longitude & Latitude)
 
 | User Home | Location Upload | Admin Dashboard |
 |:---------:|:----------------:|:----------------:|
-| ![Home](\HomePage.png) | ![Student Page](\StudentPage.png) | ![Admin Dashboard](\AdminPage.png) |
+| ![Home](HomePage.png) | ![Student Page](StudentPage.png) | ![Admin Dashboard](AdminPage.png) |
 
 
 > 📌 Replace these placeholder images with your real screenshot URLs
