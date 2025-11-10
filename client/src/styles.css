@@ -1,0 +1,16 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Brand styles similar to original */
+.sv-hero {
+	@apply bg-primary text-white;
+}
+.sv-btn {
+	@apply px-4 py-2 rounded bg-primary text-white hover:bg-primary-light transition;
+}
+.sv-card {
+	@apply bg-white shadow rounded p-4;
+}
+
+
