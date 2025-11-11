@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/index.js",
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "build": "echo 'No build step required for Node.js server'",
+    "prod": "NODE_ENV=production node src/index.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

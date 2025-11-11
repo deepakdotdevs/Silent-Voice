@@ -8,12 +8,28 @@ import authRouter from './routes/auth.js';
 
 dotenv.config();
 
+// Validate required environment variables
+const requiredEnvVars = ['JWT_SECRET', 'MONGO_URI'];
+const missingEnvVars = requiredEnvVars.filter((envVar) => !process.env[envVar]);
+
+if (missingEnvVars.length > 0) {
+	console.error(`Missing required environment variables: ${missingEnvVars.join(', ')}`);
+	console.error('Please create a .env file based on env.example');
+}
+
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(cors());
+// Configure CORS for production
+const corsOptions = {
+	origin: process.env.CLIENT_URL || '*',
+	credentials: true,
+	optionsSuccessStatus: 200
+};
+
+app.use(cors(corsOptions));
 app.use(express.json({ limit: '5mb' }));
-app.use(morgan('dev'));
+app.use(morgan(process.env.NODE_ENV === 'production' ? 'combined' : 'dev'));
 
 app.get('/', (req, res) => {
 	res.json({ status: 'ok', service: 'SilentVoice API' });
