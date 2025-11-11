@@ -3,11 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  },
   "scripts": {
     "dev": "nodemon src/index.js",
     "start": "node src/index.js",
     "build": "echo 'No build step required for Node.js server'",
-    "prod": "NODE_ENV=production node src/index.js"
+    "prod": "NODE_ENV=production node src/index.js",
+    "validate": "node validate.js"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
