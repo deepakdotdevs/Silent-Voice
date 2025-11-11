@@ -30,6 +30,7 @@ app.use((err, req, res, next) => {
 
 connectToDatabase()
 	.then(() => {
+		console.log('Connected to MongoDB successfully');
 		app.listen(port, () => {
 			// eslint-disable-next-line no-console
 			console.log(`SilentVoice API listening on http://localhost:${port}`);
@@ -37,8 +38,12 @@ connectToDatabase()
 	})
 	.catch((error) => {
 		// eslint-disable-next-line no-console
-		console.error('Failed to start server', error);
-		process.exit(1);
+		console.warn('Failed to connect to MongoDB, starting server without database:', error.message);
+		console.log('Note: Database-dependent features may not work properly');
+		app.listen(port, () => {
+			// eslint-disable-next-line no-console
+			console.log(`SilentVoice API listening on http://localhost:${port} (without database)`);
+		});
 	});
 
 

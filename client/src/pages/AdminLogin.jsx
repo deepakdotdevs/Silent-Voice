@@ -16,6 +16,8 @@ export default function AdminLogin() {
 		try {
 			const { data } = await api.post('/api/auth/login', { email, password });
 			window.localStorage.setItem('sv_token', data.token);
+			// Trigger custom event to notify useAuth hook
+			window.dispatchEvent(new Event('tokenChanged'));
 			navigate('/admin', { replace: true });
 		} catch (err) {
 			setError(err?.response?.data?.message || 'Login failed');
@@ -25,21 +27,56 @@ export default function AdminLogin() {
 	}
 
 	return (
-		<section className="max-w-md mx-auto sv-card">
-			<h2 className="text-xl font-semibold text-primary mb-4">Admin Login</h2>
-			<form onSubmit={handleLogin} className="space-y-3">
-				<div>
-					<label className="block text-sm mb-1">Email</label>
-					<input className="w-full border rounded px-3 py-2" value={email} onChange={(e) => setEmail(e.target.value)} />
+		<div className="page">
+			<div className="login-container">
+				<div className="login-box">
+					<svg className="login-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+						<path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+					</svg>
+					<h2>Admin Login</h2>
+
+					<form onSubmit={handleLogin}>
+						<div className="form-group">
+							<label>Email</label>
+							<input 
+								type="email" 
+								className="form-input" 
+								placeholder="Enter your email"
+								value={email} 
+								onChange={(e) => setEmail(e.target.value)} 
+							/>
+						</div>
+
+						<div className="form-group">
+							<label>Password</label>
+							<input 
+								type="password" 
+								className="form-input" 
+								placeholder="Enter your password"
+								value={password} 
+								onChange={(e) => setPassword(e.target.value)} 
+							/>
+						</div>
+
+						<button type="submit" className="btn btn-primary btn-large" disabled={loading}>
+							{loading ? 'Signing in...' : 'Sign In'}
+						</button>
+						
+						{error && (
+							<p style={{ color: 'var(--danger)', marginTop: '1rem', fontSize: '0.9rem' }}>
+								{error}
+							</p>
+						)}
+						
+						<p className="login-hint">Demo: admin@campus.edu / password123</p>
+					</form>
 				</div>
-				<div>
-					<label className="block text-sm mb-1">Password</label>
-					<input type="password" className="w-full border rounded px-3 py-2" value={password} onChange={(e) => setPassword(e.target.value)} />
-				</div>
-				<button className="sv-btn" disabled={loading}>{loading ? 'Signing in...' : 'Sign In'}</button>
-				{error ? <p className="text-red-600 text-sm">{error}</p> : null}
-			</form>
-		</section>
+			</div>
+
+			<footer className="footer">
+				<p>SilentVoice © 2025. An Intelligent Campus Safety Platform.</p>
+			</footer>
+		</div>
 	);
 }
 
