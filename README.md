@@ -298,15 +298,29 @@ GET  /api/reports/stats/summary # Get dashboard stats
 ### Backend
 ```bash
 cd server
-npm start
+npm install --production
+NODE_ENV=production npm start
 ```
+
+Set these environment variables in production:
+- `NODE_ENV=production`
+- `MONGO_URI` (MongoDB Atlas connection string)
+- `JWT_SECRET` (strong random string)
+- `CLIENT_URL` (your frontend URL for CORS)
+- `PORT` (default: 5000)
 
 ### Frontend
 ```bash
 cd client
+npm install
 npm run build
-npm run preview
+npm run preview  # Test production build locally
 ```
+
+The built files will be in the `client/dist` directory.
+
+Set these environment variables:
+- `VITE_API_URL` (your backend API URL)
 
 ---
 
