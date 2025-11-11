@@ -13,6 +13,7 @@ Framework: Vite
 Build Command: npm run build
 Output Directory: dist
 Install Command: npm install
+Node Version: 20+ (automatic)
 ```
 
 ### Environment Variables
@@ -24,6 +25,30 @@ VITE_API_URL=https://your-backend-url.onrender.com
 ```
 https://your-project.vercel.app
 ```
+
+### ⚠️ Important
+Vercel automatically uses Node 20+, which is required for Vite 7.
+
+---
+
+## 📦 **NETLIFY (Frontend Alternative)**
+
+### Configuration
+```
+Configured via netlify.toml (automatic)
+Base: client
+Build: npm run build
+Publish: client/dist
+Node Version: 20 (set in netlify.toml)
+```
+
+### Environment Variables
+```
+VITE_API_URL=https://your-backend-url.onrender.com
+```
+
+### ⚠️ Important
+The `netlify.toml` file sets Node 20, which is required for Vite 7.
 
 ---
 

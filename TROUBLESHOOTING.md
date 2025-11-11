@@ -72,6 +72,45 @@ Missing files or incorrect paths during build.
 
 ---
 
+## ❌ Error: "Node.js version 20.19+ or 22.12+ required"
+
+### Problem
+Vite 7.2.2 requires Node.js version 20.19+ or 22.12+, but deployment platform is using an older version (e.g., Node 18).
+
+### Solutions
+
+1. **Netlify - Update netlify.toml**
+   Already configured in the project:
+   ```toml
+   [build.environment]
+     NODE_VERSION = "20"
+   ```
+
+2. **Vercel - Automatically uses latest Node LTS**
+   Vercel automatically uses Node 20+, no action needed.
+
+3. **Render - Set Node Version**
+   Add to render.yaml or set in dashboard:
+   ```yaml
+   envVars:
+     - key: NODE_VERSION
+       value: 20
+   ```
+
+4. **Local Development**
+   Upgrade your Node.js:
+   ```bash
+   # Check current version
+   node --version
+   
+   # Download Node 20+ from nodejs.org
+   # Or use nvm:
+   nvm install 20
+   nvm use 20
+   ```
+
+---
+
 ## ❌ Error: "Cannot find module 'vite'"
 
 ### Problem
