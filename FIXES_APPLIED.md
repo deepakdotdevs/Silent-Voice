@@ -161,6 +161,30 @@ Complete deployment guide covering:
 
 ---
 
+## ⚠️ IMPORTANT: Deployment Configuration
+
+### The "Command exited with 1" Error - SOLVED
+
+If you see this error during deployment, it's because of incorrect root directory settings.
+
+**Solution for Vercel:**
+1. Go to Project Settings → General
+2. Set **Root Directory** to `client`
+3. Framework Preset: Vite
+4. Build Command: `npm run build`
+5. Output Directory: `dist`
+
+**Solution for Netlify:**
+- Use the `netlify.toml` file in the root (already created)
+- It automatically sets base directory to `client`
+
+**Files Created to Help:**
+- `client/vercel.json` - Client-specific Vercel config
+- `netlify.toml` - Netlify configuration
+- `TROUBLESHOOTING.md` - Complete troubleshooting guide
+
+---
+
 ## 🚀 Next Steps to Deploy
 
 ### 1. Setup MongoDB Atlas
