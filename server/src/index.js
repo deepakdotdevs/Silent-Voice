@@ -44,22 +44,37 @@ app.use((err, req, res, next) => {
 	res.status(err.status || 500).json({ message: err.message || 'Server error' });
 });
 
-connectToDatabase()
-	.then(() => {
-		console.log('Connected to MongoDB successfully');
-		app.listen(port, () => {
-			// eslint-disable-next-line no-console
-			console.log(`SilentVoice API listening on http://localhost:${port}`);
+// For Vercel serverless deployment
+if (process.env.VERCEL) {
+	connectToDatabase()
+		.then(() => {
+			console.log('Connected to MongoDB successfully');
+		})
+		.catch((error) => {
+			console.warn('Failed to connect to MongoDB:', error.message);
 		});
-	})
-	.catch((error) => {
-		// eslint-disable-next-line no-console
-		console.warn('Failed to connect to MongoDB, starting server without database:', error.message);
-		console.log('Note: Database-dependent features may not work properly');
-		app.listen(port, () => {
+} else {
+	// For local development
+	connectToDatabase()
+		.then(() => {
+			console.log('Connected to MongoDB successfully');
+			app.listen(port, () => {
+				// eslint-disable-next-line no-console
+				console.log(`SilentVoice API listening on http://localhost:${port}`);
+			});
+		})
+		.catch((error) => {
 			// eslint-disable-next-line no-console
-			console.log(`SilentVoice API listening on http://localhost:${port} (without database)`);
+			console.warn('Failed to connect to MongoDB, starting server without database:', error.message);
+			console.log('Note: Database-dependent features may not work properly');
+			app.listen(port, () => {
+				// eslint-disable-next-line no-console
+				console.log(`SilentVoice API listening on http://localhost:${port} (without database)`);
+			});
 		});
-	});
+}
+
+// Export for Vercel serverless
+export default app;
 
 
