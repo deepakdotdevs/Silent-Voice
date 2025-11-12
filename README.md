@@ -393,7 +393,7 @@ K.R. Mangalam University
 
 ## 📞 Support
 
-For support, email your-email@example.com or create an issue on GitHub.
+For support, email deepak.06934@gmail.com or create an issue on GitHub.
 
 ---
 
